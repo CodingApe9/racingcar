@@ -6,18 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public final class RacingCarApplication {
-    public static void main(String[] args) throws IOException {
-        System.out.println("Hello " + Arrays.toString(args));
-        Scanner sc = new Scanner(System.in);
-        BufferedReader brForInputName = new BufferedReader(new InputStreamReader(System.in));
-        CarListCreate carlist = new CarListCreate();
-        List<String> carNameList = carlist.createList(brForInputName.readLine());
+    public static void main(String[] args) throws Exception {
+//        System.out.println("Hello " + Arrays.toString(args));
 
-
+//        BufferedReader brForInputName = new BufferedReader(new InputStreamReader(System.in));
+        CarListCreate carList = new CarListCreate();
+        List<String> carNameList = carList.createList(args[0]);
 
         System.out.println(carNameList);
-
-
     }
 }
 

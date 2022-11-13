@@ -1,6 +1,8 @@
 import java.util.*;
+import java.util.function.Function;
 
-public class CarListCreate {
+public class CarFactory {
+    private static int originalNumberOfAttempts;
     /**
      * @param inputNameString 차 이름 스트링 ", "로 구분
      * @return 차 이름 스트링 리스트
@@ -12,6 +14,16 @@ public class CarListCreate {
             throw new Exception("ㅎㅎ 범인 나오세요");
         }
         return carNameList;
+    }
+
+    public List<Car> createCars(List<String> carNameList, int numberOfAttempts){
+        List<Car> cars = new ArrayList<>();
+
+        for (String carName: carNameList){
+            cars.add(new Car(carName, numberOfAttempts));
+        }
+
+        return cars;
     }
 
     /**
@@ -44,5 +56,28 @@ public class CarListCreate {
             return false;
         }
         return true;
+    }
+
+
+    public static void SetOriginalNumberOfAttempts(String n) throws Exception {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        return Integer.parseInt(br.readLine());
+        int num;
+        try {
+            num = Integer.parseInt(n); //n == args[1]
+        }catch (NumberFormatException e1){
+            throw new Exception("숫자가 아닙니다.");
+        }catch (ArrayIndexOutOfBoundsException e2){
+            throw new Exception("시도 횟수를 입력해주세요.");
+        }
+
+        if (num<1){
+            throw new Exception("시도 횟수가 너무 작습니다. 1 이상으로 입력해주세요.");
+        }
+        originalNumberOfAttempts = num;
+    }
+
+    public static int getOriginalNumberOfAttempts() {
+        return originalNumberOfAttempts;
     }
 }

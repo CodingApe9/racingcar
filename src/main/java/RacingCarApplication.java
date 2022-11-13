@@ -15,7 +15,6 @@ public final class RacingCarApplication {
 //        System.out.println(carNameList);
 //        System.out.println(cars);
 
-
     }
 }
 

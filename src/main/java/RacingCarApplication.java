@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public final class RacingCarApplication {
@@ -8,7 +9,7 @@ public final class RacingCarApplication {
         List<String> carNameList = carFactory.createList(args[0]);
 
         CarFactory.SetOriginalNumberOfAttempts(args[1]);
-        List<Car> cars = carFactory.createCars(carNameList, CarFactory.getOriginalNumberOfAttempts());
+        List<Car> cars = carFactory.createCars(carNameList);
 
         CarRacingStart.run(cars, CarFactory.getOriginalNumberOfAttempts());
 //        System.out.println(carNameList);

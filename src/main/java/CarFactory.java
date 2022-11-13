@@ -16,11 +16,11 @@ public class CarFactory {
         return carNameList;
     }
 
-    public List<Car> createCars(List<String> carNameList, int numberOfAttempts){
+    public List<Car> createCars(List<String> carNameList){
         List<Car> cars = new ArrayList<>();
 
         for (String carName: carNameList){
-            cars.add(new Car(carName, numberOfAttempts));
+            cars.add(new Car(carName));
         }
 
         return cars;

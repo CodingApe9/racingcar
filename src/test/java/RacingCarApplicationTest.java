@@ -10,8 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class RacingCarApplicationTest {
     @TestFactory
     List<DynamicTest> 테스트() {
-        String[] strings1 = {"안녕, 친구들"}, strings2 = {"1, 2, 3, 4, 5"}, strings3 = {" "},
-                strings4 = {"123, 1241324,  , 2"}, strings5 = {"123, 123,  ,2"}, strings6 = {" , , 123321, , "};
+        String[] strings1 = {"안녕, 친구들", "3"},
+                strings2 = {"a, b, c, d, e", "5"},
+                strings3 = {"a, b, c, d, e", "5"},
+                strings4 = {" ", ""},
+                strings5 = {"123, 123,  ,2", "3"},
+                strings6 = {" , , 123321, , ", "!"};
 
         return List.of(
                 DynamicTest.dynamicTest("테스트1 이름", () -> {

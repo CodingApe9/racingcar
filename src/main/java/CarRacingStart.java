@@ -13,18 +13,10 @@ public class CarRacingStart {
             }
             System.out.println();
         }
-//        String maxLocStr = cars.stream()
-//                .map((car) -> car.getLocation())
-//                        .max((a, b) -> Math.max(a, b));
-//                .reduce((max, carLoc) -> Math.max(max, carLoc)).toString();
-
-//        System.out.println(maxLocStr);
 
         int maxLoc = cars.stream()
                 .map((car) -> car.getLocation())
                 .max((a, b) -> Math.max(a, b)).get();
-
-        System.out.println(maxLoc);
 
         List<Car> WinCars = cars.stream().filter((car) ->
                         car.getLocation()==maxLoc).collect(Collectors.toList());

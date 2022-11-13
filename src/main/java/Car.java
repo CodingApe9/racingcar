@@ -4,11 +4,10 @@ import java.io.InputStreamReader;
 
 public class Car {
     private String name;
-    private int numberOfAttempts, Location;
+    private int Location;
 
-    public Car(String name, int numberOfAttempts) {
+    public Car(String name) {
         this.name = name;
-        this.numberOfAttempts = numberOfAttempts;
         Location = 0;
     }
 
@@ -28,7 +27,7 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "name='" + name + '\'' +
-                ", numberOfAttempts=" + numberOfAttempts +
+                ", Location=" + Location +
                 '}';
     }
 }

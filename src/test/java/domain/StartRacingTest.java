@@ -7,6 +7,9 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StartRacingTest {
+    StartRacing racing1 = new StartRacing();
 
+//    @Test
+//    @DisplayName("")
 
 }

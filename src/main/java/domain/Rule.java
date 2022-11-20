@@ -7,6 +7,13 @@ public class Rule {
     private int randStart, randEnd;
     private Predicate<Integer> pivot;
 
+    /**
+     * 경기에 적용할 룰을 정의
+     * @param carMovingNum 각 자동차가 시도할 전진 횟수
+     * @param randStart (a~b)에서 a
+     * @param randEnd (a~b)에서 b
+     * @param pivot 랜덤한 숫자를 어떤 값을 기준으로 전진할지 정하는 함수형 인터페이스
+     */
     public Rule(String carMovingNum, String randStart, String randEnd, Predicate<Integer> pivot) {
         setCarMovingNum(carMovingNum);
         setRandRange(randStart, randEnd);

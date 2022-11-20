@@ -25,12 +25,6 @@ public class CarListCreate {
 
         List<String> nameCount = List.of(string.split(","));
 
-//        if (nameCount.size() == 1 && dotCount == 1)
-//            throw new IllegalArgumentException("parsing 실패");
-//
-//        if (nameCount.size() != 1 && dotCount != nameCount.size() - 1)
-//            throw new IllegalArgumentException("parsing 실패");
-
         if (nameCount.size() < 1 || dotCount != nameCount.size() - 1)
             throw new IllegalArgumentException("parsing 실패");
 

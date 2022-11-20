@@ -18,10 +18,11 @@ class CarListCreateTest {
     @DisplayName("자동치 이름을 입력받으면 리스트로 반환한다.")
     void test1() {
         // Given
-        var carName = "자동차름";
+        var carName = "자동차이름";
 
         // When
         var result = service.createList(carName);
+        System.out.println(result);
 
         // Then
         assertThat(result).contains(carName);
@@ -43,9 +44,27 @@ class CarListCreateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"12345", "가나다라마", "abcde", "dwqjopdqwpdqwjpdo", ""})
-    @DisplayName("자동차의 이름은 1글자에서 4글자 사이가 아니면 예외를 반환해야한다.")
-    void test6(String name) {
+    @ValueSource(strings = {"이름,", ",a", "a,b,c,", ",ab"})// TODO "1,,"
+    @DisplayName("자동차 이름 문자열을 입력할 떄, 쉼표 수가 맞지않으면 예외를 반환하다.")
+    void test3(String name) {
+        var exception = catchThrowable(() -> service.createList(name));
+
+        // then 예외가 터졌으면 좋겠어요
+        assertThat(exception).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차의 이름은 공백을 포함하면 예외를 반환한다.")
+    void test4() {
+        var exception = catchThrowable(() -> service.createList("asd 2"));
+
+        assertThat(exception).isNotNull();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123456", "가나다라마바", "dwqjopdqwpdqwjpdo", ""})
+    @DisplayName("자동차의 이름은 1글자에서 5글자 사이가 아니면 예외를 반환해야한다.")
+    void test5(String name) {
         // when
         var exception = catchThrowable(() -> service.createList(name));
 
@@ -54,25 +73,12 @@ class CarListCreateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"이름,", ",a", "a,b,c,", ",ab"})// TODO "1,,"
-    @DisplayName("자동차 이름 문자열을 입력할 떄, 쉼표 수가 맞지않으면 예외를 반환하다.")
-    void test4(String name) {
+    @ValueSource(strings = {"a,a,b,c", "ab,v,d,ab"})// TODO "1,,"
+    @DisplayName("자동차 이름은 중복되면 안된다.")
+    void test6(String name) {
         var exception = catchThrowable(() -> service.createList(name));
 
         // then 예외가 터졌으면 좋겠어요
         assertThat(exception).isInstanceOf(IllegalArgumentException.class);
-
-    }
-
-    @Test
-    @DisplayName("쉼표 개수는 자동차개수-1 이어야 한다.")
-    void test6() {
-
-    }
-
-    @Test
-    @DisplayName("자동차의 이름은 공백을 포함하면 안된다.")
-    void test7() {
-
     }
 }

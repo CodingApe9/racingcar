@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CarListCreate {
     /**
@@ -24,10 +25,13 @@ public class CarListCreate {
 
         List<String> nameCount = List.of(string.split(","));
 
-        if (nameCount.size() == 1 && dotCount == 1)
-            throw new IllegalArgumentException("parsing 실패");
+//        if (nameCount.size() == 1 && dotCount == 1)
+//            throw new IllegalArgumentException("parsing 실패");
+//
+//        if (nameCount.size() != 1 && dotCount != nameCount.size() - 1)
+//            throw new IllegalArgumentException("parsing 실패");
 
-        if (nameCount.size() != 1 && dotCount != nameCount.size() - 1)
+        if (nameCount.size() < 1 || dotCount != nameCount.size() - 1)
             throw new IllegalArgumentException("parsing 실패");
 
         return List.of(string.split(","));
@@ -39,13 +43,18 @@ public class CarListCreate {
                 System.out.println("자동차 이름 중 공백이 포함되어 있습니다.");
                 return false;
             }
-            if (carName.length() >= 5 || carName.length() < 1) {
+            if (carName.length() > 5 || carName.length() < 1) {
                 System.out.println("자동차 이름 길이가 너무 길거나 짧습니다. :: " + carName);
                 return false;
             }
 
-            // TODO : 중복된 자동차 이름 찾기, 쉼표의 개수+1와 자동차 이름의 개수가 맞아야한다.
         }
+
+        if (names.stream().distinct().count() != names.size()){
+            System.out.println("중복된 자동차 이름이 있습니다.");
+            return false;
+        }
+
         return true;
     }
 }

@@ -1,4 +1,4 @@
-import domain.CarListCreate;
+import domain.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,9 +10,13 @@ public final class RacingCarApplication {
 
         BufferedReader brForInputName = new BufferedReader(new InputStreamReader(System.in));
         CarListCreate carList = new CarListCreate();
-        List<String> carNameList = carList.createList("hi,");
+        List<String> carNameList = carList.createList("aa,bb,dd");
 
-        System.out.println(carNameList);
+        List<Car> cars = CarFactory.producingCars(carNameList);
+
+        StartRacing race = new StartRacing();
+        Rule rule = new Rule("6", "0", "9", (i)->i>4);
+        System.out.println("우승 자동차: "+race.run(cars, rule));
     }
 }
 
